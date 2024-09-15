@@ -1,0 +1,14 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+[data-scroll-container] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-scroll-container] .locomotive-scroll {
+  height: 100%;
+}
+
