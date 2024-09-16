@@ -86,6 +86,7 @@ import {
   Heading,
   SimpleGrid,
   Stat,
+  Link,
   StatLabel,
   StatNumber,
   StatHelpText,
@@ -98,12 +99,16 @@ import { motion } from 'framer-motion';
 
 const MotionBox = motion(Box);
 
-const StatCard = ({ platform, icon, engagement, views, growth, index }) => {
+const StatCard = ({ platform, icon, engagement, views, growth, index, url }) => {
   const bgColor = useColorModeValue('white', 'gray.700');
   const textColor = useColorModeValue('gray.600', 'gray.200');
 
   return (
     <MotionBox
+      as={Link}
+      href={url}
+      isExternal
+      _hover={{ textDecoration: 'none' }}
       whileHover={{ scale: 1.05, rotate: 5 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, scale: 0, rotate: -180 }}
@@ -138,10 +143,10 @@ const StatCard = ({ platform, icon, engagement, views, growth, index }) => {
 
 const AnalyticsDashboard = () => {
   const platforms = [
-    { name: 'Facebook', icon: FaFacebook, engagement: '1.2K', views: '5.7K', growth: 13.6 },
-    { name: 'Twitter', icon: FaTwitter, engagement: '892', views: '4.2K', growth: 8.1 },
-    { name: 'Instagram', icon: FaInstagram, engagement: '2.4K', views: '12.3K', growth: 22.5 },
-    { name: 'LinkedIn', icon: FaLinkedin, engagement: '438', views: '2.1K', growth: -3.2 },
+    { name: 'Facebook', icon: FaFacebook, engagement: '1.2K', views: '5.7K', growth: 13.6, url: 'https://facebook.com' },
+    { name: 'Twitter', icon: FaTwitter, engagement: '892', views: '4.2K', growth: 8.1, url: 'https://twitter.com' },
+    { name: 'Instagram', icon: FaInstagram, engagement: '2.4K', views: '12.3K', growth: 22.5, url: 'https://instagram.com' },
+    { name: 'LinkedIn', icon: FaLinkedin, engagement: '438', views: '2.1K', growth: -3.2, url: 'https://linkedin.com' },
   ];
 
   const bgColor = useColorModeValue('gray.50', 'gray.900');
@@ -169,6 +174,7 @@ const AnalyticsDashboard = () => {
             views={platform.views}
             growth={platform.growth}
             index={index}
+            url={platform.url}
           />
         ))}
       </SimpleGrid>
